@@ -1,12 +1,21 @@
-import React from 'react';
-import styles from './App.module.css';
+import React , {Component} from 'react';
+import Layout from './Components/Layout/Layout'
+import FoodBuilder from './Containers/FoodBuilder/FoodBuilder'
 
-function App() {
-  return (
-    <div className="App">
-      
-    </div>
-  );
+class App extends Component{
+
+  render(){
+
+    return (
+      <div>
+	      <Layout>
+	      		<FoodBuilder />
+	      </Layout>
+      </div>
+
+      );
+  }
+
+
 }
-
 export default App;
