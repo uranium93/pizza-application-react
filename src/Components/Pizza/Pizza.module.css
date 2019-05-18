@@ -1,10 +1,26 @@
+@keyframes rotatepizza {
+    from {transform: rotate(0deg);}
+    to   {transform: rotate(360deg);}
+}
+.myp{
+    text-align: center;
+    font-family: roboto;
+    color: red;
+    font-size: 36px;
+    font-weight: 100;
+}
+.pizza {
+
+    
+    animation: rotatepizza 60s linear infinite ;
+}
 .plate {
     width: 600px;
     height: 600px;
     border-radius: 500px;
     background: #4A1804;
     position: relative;
-    left: 100px;
+    margin: 20px auto;
 }
 
 .pizzabase1 {
@@ -197,3 +213,210 @@
     left: 250px;
 }
 
+@media (max-width: 700px) {
+.plate {
+    width: 300px;
+    height: 300px;
+    border-radius: 500px;
+    background: #4A1804;
+    position: relative;
+    margin: 20px auto;
+}
+.myp{
+    font-size: 24px;
+}
+
+.pizzabase1 {
+    width: 0px;
+    height: 0px;
+    border-right: 140px solid transparent;
+    border-top: 140px solid #E09B31;
+    border-left: 140px solid #E09B31;
+    border-bottom: 140px solid #E09B31;
+    border-top-left-radius: 140px;
+    border-top-right-radius: 140px;
+    border-bottom-left-radius: 140px;
+    border-bottom-right-radius: 140px;
+    position: absolute;
+    margin: 10px;
+    transform: rotate(-20deg);
+}
+
+.pizzabase2 {
+    width: 0px;
+    height: 0px;
+    border-right: 130px solid transparent;
+    border-top: 130px solid #FFC61C;
+    border-left: 130px solid #FFC61C;
+    border-bottom: 130px solid #FFC61C;
+    border-top-left-radius: 260px;
+    border-top-right-radius: 260px;
+    border-bottom-left-radius: 260px;
+    border-bottom-right-radius: 260px;
+    transform: rotate(-20deg);
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.slicebase1 {
+    width: 0;
+    height: 0;
+    border-left: 120px solid transparent;
+    border-right: 120px solid transparent;
+    border-top: 130px solid #E09B31;
+    border-radius: 50%;
+    position: absolute;
+    top: 55px;
+    left: 105px;
+    transform: rotate(70deg);
+}
+
+.slicebase2 {
+    width: 0;
+    height: 0;
+    border-left: 110px solid transparent;
+    border-right: 110px solid transparent;
+    border-top: 120px solid #FFC61C;
+    border-radius: 50%;
+    position: absolute;
+    top: 62px;
+    left: 110px;
+    transform: rotate(70deg);
+}
+
+.tomato1 {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #D90404;
+    position: absolute;
+    top: 30px;
+    left: 125px;
+}
+
+.tomato2 {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #D90404;
+    position: absolute;
+    top: 50px;
+    left: 65px;
+}
+
+.tomato3 {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #D90404;
+    position: absolute;
+    top: 105px;
+    left: 30px;
+}
+
+.tomato4 {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #D90404;
+    position: absolute;
+    top: 170px;
+    left: 40px;
+}
+
+.tomato5 {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #D90404;
+    position: absolute;
+    top: 210px;
+    left: 90px;
+}
+
+.tomato6 {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #D90404;
+    position: absolute;
+    top: 210px;
+    left: 160px;
+}
+
+.tomato7 {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #D90404;
+    position: absolute;
+    top: 105px;
+    left: 95px;
+}
+
+.tomato8 {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #D90404;
+    position: absolute;
+    top: 160px;
+    left: 125px;
+}
+
+.tomato9 {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #D90404;
+    position: absolute;
+    top: 55px;
+    left: 210px;
+}
+
+.tomato10 {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #D90404;
+    position: absolute;
+    top: 115px;
+    left: 230px;
+}
+
+
+.bitecircle1 {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #4A1804;
+    position: absolute;
+    top: 80px;
+    left: 175px;
+}
+
+.bitecircle2 {
+    width: 70px;
+    height: 65px;
+    border-radius: 50%;
+    background: #4A1804;
+    position: absolute;
+    top: 100px;
+    left: 162px;
+    z-index: 2;
+}
+
+.bitecircle3 {
+    width: 50px;
+    height: 40px;
+    border-radius: 80%;
+    background: #4A1804;
+    position: absolute;
+    top: 140px;
+    left: 205px;
+    z-index: 2;
+}
+
+
+}
