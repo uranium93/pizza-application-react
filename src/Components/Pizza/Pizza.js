@@ -69,7 +69,7 @@ return (
 		Up the dynamic adding of ingerients
 		down i maked the slices and bite with tomato to the right of  template
 		-----------------------------------------------------------------------------  */}
-		{ing.length!==0 ? ing : null }
+		{ ing  }
 		<div className={styles.slicebase1}>
 		</div>
 		<div className={styles.slicebase2}>
@@ -90,7 +90,7 @@ return (
 		</div>
 	</div>
 </div>
-{ing.length===0 ? <p className={styles.myp}> You can add ingredients </p> : null }
+{ <p className={styles.myp}> {props.totalCost}$</p> }
 </Aux>
 	);
 

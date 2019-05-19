@@ -1,0 +1,79 @@
+.control{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	
+	margin: 5px 0;
+}
+.borderInBottom {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 1px solid grey;
+	margin: 5px 0;
+	box-shadow: 0px 8px 5px #E0E0E0CB;
+}
+.control p {
+width: 80px;
+text-align: center;
+color: #0CAFF2FF;
+font-weight: 100;
+
+}
+.control button {
+	position: relative;
+	display: block;
+	padding: 5px;
+	margin: 0 5px;
+	width: 80px;
+	border: 1px solid #0CAFF2FF;
+	background-color: #fff;
+	border-radius: 6px;
+	cursor: pointer;
+	outline: none;
+	
+}
+
+.control button:disabled {
+	background-color: #AC9980;
+	border:#7E7365;
+	color:#ccc;
+	cursor: not-allowed;
+}
+.control button:hover:disabled {
+    background-color: #AC9980;
+    color: #ccc;
+    cursor: not-allowed;
+}
+.label {
+	padding: 10px;
+	font-weight: bold;
+	width: 80px;
+	text-align: center;
+	
+}
+
+.control .remove {
+	border: 1px solid #C21A20E4;
+	
+	color: #C21A20E4;
+
+}
+
+.control .remove:hover {
+	box-shadow: 1px 2px 2px #DB1D20FF;
+	color:#DB1D20FF; 
+}
+
+.control .add {
+	color:#0094FFFF;
+}
+.control .add:hover {
+	color:#0066FFFF;
+	box-shadow: 1px 2px 2px #0066FFFF ;
+}
+
+.control .add:active , .control .remove:active {
+	top:2px;
+	left: 2px;
+}

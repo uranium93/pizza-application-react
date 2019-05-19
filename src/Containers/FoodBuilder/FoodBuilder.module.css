@@ -1,0 +1,8 @@
+.FoodBuilder {
+	display: flex;
+}
+@media (max-width: 1200px){
+.FoodBuilder{
+	display: block;
+}
+}
