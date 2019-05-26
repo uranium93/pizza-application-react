@@ -1,27 +1,27 @@
 @keyframes rotatepizza {
     from {transform: rotate(0deg);}
-    to   {transform: rotate(360deg);}
+    to   {transform: rotate(180deg);}
 }
 .myp{
     text-align: center;
     font-family: roboto;
-    color: red;
+    color: black;
     font-size: 36px;
-    font-weight: 100;
-    border: 1px solid red;
+    font-weight: 300;
+    border: 1px solid #B0B0B0FF;
     border-radius: 5px;
     width: 80px;
     height: 40px;
     margin: 10px auto;
     padding: 5px 10px;
-    box-shadow: 0px 2px 1px #FE4242F7;
+    box-shadow: 0px 5px 5px #CCCCCCFF;
 }
 .pizza {
     width: 600px;
     height: 600px;
     margin-left: 20px;
     
-    animation: rotatepizza 60s linear infinite ;
+    animation: rotatepizza 60s  ease-out alternate infinite ;
 }
 .plate {
     width: 600px;
@@ -226,6 +226,7 @@
     .pizza {
     width: 100%;
     height: 100%;
+    margin-left: 0;
     
     
 }
@@ -243,7 +244,8 @@
     width: 55px;
     margin: 10px auto;
     padding: 0px 10px;
-    box-shadow: 0px 2px 1px #FE4242F7;
+    font-weight: 300;
+    
 }
 
 .pizzabase1 {

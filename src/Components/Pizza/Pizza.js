@@ -91,6 +91,7 @@ return (
 	</div>
 </div>
 { <p className={styles.myp}> {props.totalCost}$</p> }
+
 </Aux>
 	);
 
