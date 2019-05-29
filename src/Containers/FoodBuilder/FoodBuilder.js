@@ -1,10 +1,13 @@
 import React , {Component} from 'react'
-import styles from './FoodBuilder.module.css'
-import Pizza from '../../Components/Pizza/Pizza'
-import PizzaControls from '../../Components/PizzaControls/PizzaControls'
-import Modal from'../../Components/Ui/Modal/Modal'
-import Backdrop from'../../Components/Ui/Backdrop/Backdrop'
-import Aux from '../../hoc/Auxiliary'
+import styles              from './FoodBuilder.module.css'
+import Pizza               from '../../Components/Pizza/Pizza'
+import PizzaControls       from '../../Components/PizzaControls/PizzaControls'
+import Modal               from '../../Components/Ui/Modal/Modal'
+import Backdrop            from '../../Components/Ui/Backdrop/Backdrop'
+import Aux                 from '../../hoc/Auxiliary'
+import axios               from '../../axios-pizza'
+
+/////////////////// prices of all ingredients 
 
 const ING_PRICES = {
 		vagies: 0.28,
@@ -13,6 +16,8 @@ const ING_PRICES = {
 		mushrooms:1.43
 	}
 
+///////////////////////////////////////////////////////////////////////////////
+///////the class foodbuilder taht will manipulate the state of our pizza //////
 class FoodBuilder extends Component {
 	state = { ingredients : {
 		vagies : 0,
@@ -24,6 +29,9 @@ class FoodBuilder extends Component {
 		showMenu:false,
 		backdrop:false
 	}
+	/////////////////////////////////////////////////////
+///////////////adding ingredients to the state //////////////////	
+
 addIng = (adding)=>{
 	const prevCount = this.state.ingredients[adding];
 	const newUpdateIng = {...this.state.ingredients};
@@ -34,6 +42,9 @@ addIng = (adding)=>{
 	newUpdatePrice = parseFloat(newUpdatePrice).toFixed(2);
 	this.setState({ingredients:newUpdateIng , totalPrice:newUpdatePrice})
 }
+
+	    /////////////////////////////////////////////////////
+///////////////removing ingredients from the state //////////////////	
 
 removeIng = (removeing)=>{
 	const prevCount = this.state.ingredients[removeing];
@@ -46,6 +57,8 @@ removeIng = (removeing)=>{
 	this.setState({ingredients:newUpdateIng , totalPrice:newUpdatePrice})
 }
 
+	/////////////////////////////////////////////////////
+///////////////   minpulate the order area  //////////////////	
 showOrderMenu = ()=>{
 	
 	this.setState({showMenu:true});
@@ -58,7 +71,7 @@ hideOrderMenu = ()=>{
 
 }
 confirmOrder =()=>{
-	alert("order confirmed");
+	
 	this.hideOrderMenu();
 	this.hideBackdrop();
 }
@@ -71,16 +84,26 @@ hideBackdrop = ()=>{
 this.setState({backdrop:false})
 this.hideOrderMenu();
 }
+
+	/////////////////////////////////////////////////////
+///////////////  rendering the JSX code  //////////////////	
 render (){
+			//////////////////////////////////////////////////////
+//////////////disable button from removing less than 0 ingredietns//////////////
 	const removeDisable= {...this.state.ingredients};
 	for (let key in removeDisable ){
 		removeDisable[key]= (removeDisable[key]<=0 )
 	}
 
+			//////////////////////////////////////////////////////
+//////////////disable button from adding more than 2 ingredietns//////////////
 	const addDisable= {...this.state.ingredients};
 	for (let key in addDisable ){
 		addDisable[key]= (addDisable[key]>=2 )
 	}
+
+			//////////////////////////////////////////////////////
+//////////////  show and hide the order menu on click event  //////////////	
 	let show = null
 	if (this.state.showMenu){
 		 show = 
@@ -97,10 +120,15 @@ render (){
 		</Modal>
 		
 	}
+			//////////////////////////////////////////////////////
+////////////// show and hide the backdrop in eevnt condition //////////////	
 	let backdrop=null
 	if(this.state.backdrop){
 		backdrop=<Backdrop hide={this.hideBackdrop}/>
 	}
+
+			//////////////////////////////////////////////////////
+//////////////             returning the JSX code             //////////////	
 	return(
 
 	<Aux>
