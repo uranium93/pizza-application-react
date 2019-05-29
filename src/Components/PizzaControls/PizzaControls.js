@@ -42,7 +42,7 @@ const pizzaControls = (props)=> (
 			  		 removeButtonStatus={props.removeButtonsDisable["mushrooms"]}
 			  		 addButtonStatus={props.addButtonsDisable["mushrooms"]} 
 			  		 />
-			<button className={styles.order} onClick={props.orederMenu}>Order Pizza</button>
+			<button className={styles.order} onClick={props.orderMenu}>Order Pizza</button>
 
 		</div>
 		);
