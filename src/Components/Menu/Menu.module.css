@@ -1,0 +1,70 @@
+@media (min-width: 600px){
+	.menu{
+		display: none;
+	}
+}
+.menu p{
+	line-height: 80px;
+	margin: 0;
+}
+.menuItems p{
+	display: block;
+	position: fixed;
+	border: 1px solid black;
+	border-radius: 5px;
+	line-height: 30px;
+	right: 5px;
+	color: black;
+	font-size: 28px;
+	text-align: center;
+	width: 30px;
+	height:30px;
+}
+.menuItems{
+	position: fixed;
+	top:80px;
+	right: 0;
+	width: 100vw;
+	height:100vh;
+	background:#FFC61CFF; 
+	z-index: 500;
+	
+	
+}
+.menuItems ul{
+	margin: 0;
+	padding-top:  50px;
+
+}
+.menuItems li{
+	list-style-type: none;
+	display: block;
+	width: 100%;
+	height:100px;
+	text-align: center;
+	vertical-align:middle;
+	line-height:100px;
+
+	
+}
+
+
+.menuItems a:link {
+	display: block;
+	width: 100%;
+	height:100%;
+	color: white;
+	font-size: 24px;
+	font-style: normal;
+	text-decoration: none;
+
+}
+
+.menuItems a:active {
+	color: white;
+	background-color: #E09B31FF;
+}
+
+.menuItems a:visited {
+	color: white;
+}
