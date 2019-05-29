@@ -3,6 +3,7 @@ import styles              from './FoodBuilder.module.css'
 import Pizza               from '../../Components/Pizza/Pizza'
 import PizzaControls       from '../../Components/PizzaControls/PizzaControls'
 import Modal               from '../../Components/Ui/Modal/Modal'
+import Loading               from '../../Components/Ui/Loading/Loading'
 import Backdrop            from '../../Components/Ui/Backdrop/Backdrop'
 import Aux                 from '../../hoc/Auxiliary'
 import axios               from '../../axios-pizza'
@@ -19,15 +20,17 @@ const ING_PRICES = {
 ///////////////////////////////////////////////////////////////////////////////
 ///////the class foodbuilder taht will manipulate the state of our pizza //////
 class FoodBuilder extends Component {
-	state = { ingredients : {
-		vagies : 0,
-		corns : 0,
-		meat : 0,
-		mushrooms : 0,
-		},
-		totalPrice:1.5,
-		showMenu:false,
-		backdrop:false
+	state = {
+	 ingredients : {
+					vagies : 0,
+					corns : 0,
+					meat : 0,
+					mushrooms : 0,
+					},
+	 totalPrice  : 1.5,
+	 showMenu    : false,
+	 backdrop    : false,
+	 loading     : false
 	}
 	/////////////////////////////////////////////////////
 ///////////////adding ingredients to the state //////////////////	
@@ -71,9 +74,28 @@ hideOrderMenu = ()=>{
 
 }
 confirmOrder =()=>{
+	this.setState({loading:true});
+	const order={
+		orderIngridietns : this.state.ingredients,
+		orderPrice		 : this.state.totalPrice,
+		clientInfo       : {
+							name   : 'hanafi',
+							adress : 'cite bon accueil n05',
+							tel    : '+213552587476',
+						    },
+		deliveryType    : 'VIP',	
+
+	}
+	axios.post('/order.json',order)
+		 .then(response=>{
+		 	
+		 	this.setState({loading:false});
+		 	this.hideOrderMenu();
+			this.hideBackdrop();
+			})
+		 .catch(error  =>this.setState({loading:false}))
 	
-	this.hideOrderMenu();
-	this.hideBackdrop();
+	
 }
 cancelOrder = ()=>{
 this.hideOrderMenu();
@@ -107,16 +129,20 @@ render (){
 	let show = null
 	if (this.state.showMenu){
 		 show = 
-			<Modal>		
-			<h1>your Pizza order is :</h1> 
-			<p>Mushrooms : {this.state.ingredients.mushrooms * ING_PRICES.mushrooms}</p>
-			<p>Vagies    : {this.state.ingredients.vagies * ING_PRICES.vagies}</p>
-			<p>Corn      : {this.state.ingredients.corns * ING_PRICES.corns}</p>
-			<p>Meat      : {this.state.ingredients.meat * ING_PRICES.meat}</p>
-			
-   <p><strong>    price  :     {this.state.totalPrice} </strong></p>
-			<button className={styles.confirm} onClick={this.confirmOrder} >confirm </button>
-			<button className={styles.cancel } onClick={this.cancelOrder} >cancel  </button>
+			<Modal>
+			{this.state.loading ? <Loading /> :	//show loading or contenet 	
+				<Aux>
+				<h1>your Pizza order is :</h1> 
+				<p>Mushrooms : {this.state.ingredients.mushrooms * ING_PRICES.mushrooms}</p>
+				<p>Vagies    : {this.state.ingredients.vagies * ING_PRICES.vagies}</p>
+				<p>Corn      : {this.state.ingredients.corns * ING_PRICES.corns}</p>
+				<p>Meat      : {this.state.ingredients.meat * ING_PRICES.meat}</p>
+				
+	   			<p><strong>    price  :     {this.state.totalPrice} </strong></p>
+				<button className={styles.confirm} onClick={this.confirmOrder} >confirm </button>
+				<button className={styles.cancel } onClick={this.cancelOrder} >cancel  </button>
+				</Aux>
+			}
 		</Modal>
 		
 	}
