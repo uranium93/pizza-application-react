@@ -75,7 +75,7 @@ hideOrderMenu = ()=>{
 
 }
 confirmOrder =()=>{
-	this.setState({loading:true});
+	/*this.setState({loading:true});
 	const order={
 		orderIngridietns : this.state.ingredients,
 		orderPrice		 : this.state.totalPrice,
@@ -95,7 +95,14 @@ confirmOrder =()=>{
 			this.hideBackdrop();
 			})
 		 .catch(error  =>this.setState({loading:false}))
-	
+	*/
+	const total= encodeURIComponent(this.state.totalPrice)
+	this.props.history.push({
+		pathname:'orderPizza',
+		search:'cost='+total
+
+		})
+	console.log(this.props.history)
 	
 }
 cancelOrder = ()=>{
@@ -111,6 +118,7 @@ this.hideOrderMenu();
 	/////////////////////////////////////////////////////
 ///////////////  rendering the JSX code  //////////////////	
 render (){
+	
 			//////////////////////////////////////////////////////
 //////////////disable button from removing less than 0 ingredietns//////////////
 	const removeDisable= {...this.state.ingredients};

@@ -10,7 +10,7 @@ const errors = (Content,axios)=>{
 		}
 
 
-		componentWillMount(){
+	/*	componentWillMount(){
 			this.responseError = axios.interceptors.response.use(res=>res,error=>{
 				this.setState({anError:error})
 			})
@@ -24,7 +24,7 @@ const errors = (Content,axios)=>{
 			axios.intrtceptors.response.eject(this.responseError);
 			axios.interceptors.request.eject(this.requestError);
 
-		}
+		}*/
 
 
 		hide =()=>{
