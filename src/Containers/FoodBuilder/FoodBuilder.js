@@ -96,10 +96,16 @@ confirmOrder =()=>{
 			})
 		 .catch(error  =>this.setState({loading:false}))
 	*/
-	const total= encodeURIComponent(this.state.totalPrice)
+	 
+	const ingQuery= [];
+	for(let key in this.state.ingredients){
+		ingQuery.push(encodeURIComponent(key)+'='+encodeURIComponent(this.state.ingredients[key]))
+	}
+	const query = ingQuery.join('&')
+
 	this.props.history.push({
 		pathname:'orderPizza',
-		search:'cost='+total
+		search:query
 
 		})
 	console.log(this.props.history)

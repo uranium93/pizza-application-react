@@ -3,12 +3,23 @@ import styles from './FoodOrder.module.css'
 import Supplements from '../../Components/Supplements/Supplements'
 import axios from '../../axios-pizza'
 
+/////////////////// prices of all ingredients 
+
+const ING_PRICES = {
+		vagies: 0.28,
+		corns:0.52,
+		meat:1.20,
+		mushrooms:1.43
+	}
+
+/////////////////// prices of all supplements 
 const SUPP_PRICES={
 	jus       : 0.75,
 	desert    : 1.2,
 	chocolate : 0.80,
 }
-
+			   ///////////////
+//////////////// THE CLASS //////////////////
 class FoodOrder extends Component {
 
 state = {
@@ -22,9 +33,13 @@ state = {
 	}
 
 componentDidMount(){
-	
-	const totalcost = new URLSearchParams(this.props.location.search) 
-	this.setState({totalPrice:totalcost.get('cost')})
+	let total =0;
+	const ing = new URLSearchParams(this.props.location.search) 
+	for (let param of ing.entries()){
+		total+= param[1]*ING_PRICES[param[0]]
+	}
+	total=parseFloat(total).toFixed(2)
+	this.setState({totalPrice:total})
 
 }	
 	/////////////////////////////////////////////////////
@@ -55,17 +70,18 @@ removeIng = (removeing)=>{
 	this.setState({supplements:newUpdateIng , totalPrice:newUpdatePrice})
 }
 
+calculatePrice
 
 render(){
 			//////////////////////////////////////////////////////
-//////////////disable button from removing less than 0 ingredietns//////////////
+//////////////disable button from removing less than 0 supplement//////////////
 	const removeDisable= {...this.state.supplements};
 	for (let key in removeDisable ){
 		removeDisable[key]= (removeDisable[key]<=0 )
 	}
 
 			//////////////////////////////////////////////////////
-//////////////disable button from adding more than 2 ingredietns//////////////
+//////////////disable button from adding more than 10 supplements//////////////
 	const addDisable= {...this.state.supplements};
 	for (let key in addDisable ){
 		addDisable[key]= (addDisable[key]>=10 )
