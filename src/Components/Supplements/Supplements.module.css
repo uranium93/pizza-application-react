@@ -1,8 +1,15 @@
 .Supp{
-	width: 450px;
 	display: flex;
 	flex-flow: column;
 	margin: auto;
 	padding: 10px 0;
 	justify-content: space-between;;
+	}
+
+
+@media (min-width:425px){
+	.Supp{
+	width: 400px;
+	
+}
 }

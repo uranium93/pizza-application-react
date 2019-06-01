@@ -23,23 +23,28 @@ const SUPP_PRICES={
 class FoodOrder extends Component {
 
 state = {
+	ingredients:null,
 	 supplements : {
 					jus : 0,
 					desert : 0,
 					chocolate : 0,
 						},
 	totalPrice : null,
+	loading:false,
+
 	
 	}
 
 componentDidMount(){
-	let total =0;
+	let total =1.5;
+	let ingredient={};
 	const ing = new URLSearchParams(this.props.location.search) 
 	for (let param of ing.entries()){
-		total+= param[1]*ING_PRICES[param[0]]
+		total+= param[1]*ING_PRICES[param[0]];
+		ingredient[param[0]]=param[1];
 	}
 	total=parseFloat(total).toFixed(2)
-	this.setState({totalPrice:total})
+	this.setState({totalPrice:total , ingredients:ingredient})
 
 }	
 	/////////////////////////////////////////////////////
@@ -70,7 +75,44 @@ removeIng = (removeing)=>{
 	this.setState({supplements:newUpdateIng , totalPrice:newUpdatePrice})
 }
 
-calculatePrice
+			   //////////////////////////////////////////////////////
+//////////////back to pizza builder when click cancel in checkout page//////////////
+
+cancelHandler=()=>{
+	this.props.history.goBack();
+}
+
+			   //////////////////////////////////////////////////////
+//////////////        confirm pizza buying in checkout page    //////////////
+
+confirmHandler =()=>{
+	this.setState({loading:true});
+	const order={
+		orderIngridietns : this.state.ingredients,
+		orderSupplements : this.state.supplements,
+		orderPrice		 : this.state.totalPrice,
+		clientInfo       : {
+							name   : 'hanafi',
+							adress : 'cite bon accueil n05',
+							tel    : '+213552587476',
+						    },
+		deliveryType    : 'VIP',	
+
+	}
+	axios.post('/order.json',order)
+		 .then(response=>{
+		 	
+		 	this.setState({loading:false});
+		 	console.log(response)
+		 	this.props.history.push('/')
+			})
+		 .catch(error  =>this.setState({loading:false}))
+}
+
+
+
+
+
 
 render(){
 			//////////////////////////////////////////////////////
@@ -88,17 +130,25 @@ render(){
 	}
 
 	return(
-		<div>
 		<div className={styles.FoodOrder}>
-			<Supplements       addIngredients={this.addIng}
+			<h1> you can add more suppliments</h1>
+			<Supplements       
+							   addIngredients={this.addIng}
 							   removeIngredients={this.removeIng}
 							   ingList={this.state.supplements}
 							   removeButtonsDisable={removeDisable}
 							   addButtonsDisable={addDisable}
 							   />
 
+		
+		<p className={styles.PriceP}>Your finall Cost is : {this.state.totalPrice} </p>
+		<input type="text" name="phone" placeholder ="Phone Number   " />
+		<input type="text" name="adress" placeholder="Delevery Adress" />
+		<h5>Let it blank to use default number or adress </h5>
+		<div className={styles.buttons}>
+			<button className={styles.Confirm} onClick={this.confirmHandler}> &#10003; </button>
+			<button className={styles.Cancel}  onClick={this.cancelHandler} >    X 	   </button>
 		</div>
-		<p style={{textAlign:'center'}}>Your finall Cost is : {this.state.totalPrice} </p>
 		</div>
 		);
 }

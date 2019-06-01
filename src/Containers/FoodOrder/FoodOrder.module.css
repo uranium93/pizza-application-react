@@ -1,3 +1,115 @@
+
+button:focus {
+	outline:0;
+}
+input:focus {
+	outline:0;
+}
 .FoodOrder {
-	display: flex;
+	display: block;
+	border-bottom: 1px solid #ccc;
+	text-align: center;
+}
+.FoodOrder input {
+	display: block;
+	width: 280px;
+	border-radius: 2px;
+	border: none;
+	border-bottom: 2px solid #ccc;
+	height:30px;
+	margin: 10px auto;
+	transition: 3s;
+	box-sizing: border-box;
+}
+
+.FoodOrder input:hover {
+	border-radius: 10px;
+	border: 2px solid rgba(0,0,250,.5);
+	transition: 1s;
+	
+}
+
+.FoodOrder h5 {
+	display: inline-block;
+	margin-top: 0;
+	font-weight: 500;
+	border-bottom: 1px solid #ccc;
+}
+.FoodOrder h1 {
+	font-weight: 200;
+	color: #EAAC00FF;
+	
+}
+
+.FoodOrder .PriceP {
+	font-weight: bold;
+	font-size: 18px;
+	display: inline-block;
+	border: 1px solid #ccc;
+	padding: 5px 10px;
+	box-sizing: border-box;
+	border-radius: 50px;
+	box-shadow: 0 -5px 6px rgba(0,0,0,.1) inset;
+}
+
+.FoodOrder .Confirm ,
+.FoodOrder .Cancel {
+	position: relative;
+	width:80px;
+	height:35px;
+	padding: 0;
+	text-align: 80px;
+	background: white;
+	border: none;
+	margin: 10px;
+	display: inline-block;
+	font-size: 18px;
+	border-radius: 60px;
+}
+
+.FoodOrder .Confirm{
+	color:green;
+	border:  1px solid green;
+	transition: 1s;
+	font-size: 15px;
+	
+}
+.FoodOrder .Confirm:hover{
+	color: white;
+	background: green;
+	transition: .5;
+}
+
+.FoodOrder .Cancel{
+	color:red;
+	border:  1px solid red;
+	transition: 1s;
+	
+}
+.FoodOrder .Cancel:hover{
+	color: white;
+	background: red;
+	transition: .5;
+}
+
+.FoodOrder .Confirm:active ,
+.FoodOrder .Cancel:active {
+	top:2px;
+	left:1px;
+
+	
+}
+
+
+
+@media (max-width: 350px){
+
+	
+.Supplements{
+
+position: relative;
+left:-40px;
+		
+}
+	
 }

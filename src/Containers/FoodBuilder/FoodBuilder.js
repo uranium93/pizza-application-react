@@ -75,27 +75,6 @@ hideOrderMenu = ()=>{
 
 }
 confirmOrder =()=>{
-	/*this.setState({loading:true});
-	const order={
-		orderIngridietns : this.state.ingredients,
-		orderPrice		 : this.state.totalPrice,
-		clientInfo       : {
-							name   : 'hanafi',
-							adress : 'cite bon accueil n05',
-							tel    : '+213552587476',
-						    },
-		deliveryType    : 'VIP',	
-
-	}
-	axios.post('/order.json',order)
-		 .then(response=>{
-		 	
-		 	this.setState({loading:false});
-		 	this.hideOrderMenu();
-			this.hideBackdrop();
-			})
-		 .catch(error  =>this.setState({loading:false}))
-	*/
 	 
 	const ingQuery= [];
 	for(let key in this.state.ingredients){
