@@ -4,6 +4,8 @@ button:focus {
 }
 input:focus {
 	outline:0;
+	padding:  10px;
+	
 }
 .FoodOrder {
 	display: block;

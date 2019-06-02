@@ -2,6 +2,7 @@ import React , {Component} from 'react'
 import styles from './FoodOrder.module.css'
 import Supplements from '../../Components/Supplements/Supplements'
 import axios from '../../axios-pizza'
+import Loading from '../../Components/Ui/Loading/Loading'
 
 /////////////////// prices of all ingredients 
 
@@ -104,7 +105,7 @@ confirmHandler =()=>{
 		 	
 		 	this.setState({loading:false});
 		 	console.log(response)
-		 	this.props.history.push('/')
+		 	this.props.history.push('/build')
 			})
 		 .catch(error  =>this.setState({loading:false}))
 }
@@ -129,9 +130,14 @@ render(){
 		addDisable[key]= (addDisable[key]>=10 )
 	}
 
+
 	return(
-		<div className={styles.FoodOrder}>
-			<h1> you can add more suppliments</h1>
+		
+
+			<div className={styles.FoodOrder}>
+			{this.state.loading ? <Loading /> : 
+				<div>
+				<h1> you can add more suppliments</h1>
 			<Supplements       
 							   addIngredients={this.addIng}
 							   removeIngredients={this.removeIng}
@@ -149,7 +155,14 @@ render(){
 			<button className={styles.Confirm} onClick={this.confirmHandler}> &#10003; </button>
 			<button className={styles.Cancel}  onClick={this.cancelHandler} >    X 	   </button>
 		</div>
-		</div>
+		
+</div>
+		
+
+
+			}
+			</div>
+		
 		);
 }
 

@@ -83,7 +83,7 @@ confirmOrder =()=>{
 	const query = ingQuery.join('&')
 
 	this.props.history.push({
-		pathname:'orderPizza',
+		pathname:'build/Pizza',
 		search:query
 
 		})

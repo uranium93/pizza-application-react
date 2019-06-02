@@ -1,0 +1,7 @@
+.Orders{
+	width:100vw;
+	display: flex;
+	flex-flow:column;
+	align-items: center;
+	justify-content: space-between;
+}

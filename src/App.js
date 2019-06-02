@@ -2,6 +2,7 @@ import React , {Component} from 'react';
 import Layout from './Components/Layout/Layout'
 import FoodBuilder from './Containers/FoodBuilder/FoodBuilder'
 import FoodOrder from './Containers/FoodOrder/FoodOrder'
+import Orders from './Containers/Orders/Orders'
 import {Route , Switch} from 'react-router-dom'
 
 
@@ -13,8 +14,10 @@ class App extends Component{
       <div>
 	      <Layout>
 	      <Switch>
-	      	<Route path='/orderPizza' component={FoodOrder} />
-	      	<Route path='/' component={FoodBuilder} />
+	      	<Route path='/build/Pizza' component={FoodOrder} />
+	      	<Route path='/orders' component={Orders} />
+	      	<Route path='/build' component={FoodBuilder} />
+
 	      </Switch>
 	      		
 	      		
