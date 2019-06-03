@@ -32,6 +32,21 @@ state = {
 						},
 	totalPrice : null,
 	loading:false,
+	orderInfo:{
+		phone:{
+			minLength:13,
+			value:'',
+			valide:true,
+
+		},
+		adress:{
+			minLength:10,
+			value:'',
+			valide:true,
+
+		},
+
+	},
 
 	
 	}
@@ -88,23 +103,30 @@ cancelHandler=()=>{
 
 confirmHandler =()=>{
 	this.setState({loading:true});
+	let phoneNumber=this.state.orderInfo.phone.value;
+	let adress=this.state.orderInfo.adress.value;
+	if(phoneNumber==''){
+		phoneNumber='default phone Number'
+	}
+	if(adress==''){
+		adress='default adress'
+	}
+	const clientInfo ={
+		phoneNumber:phoneNumber,
+		adress:adress,
+	}
 	const order={
 		orderIngridietns : this.state.ingredients,
 		orderSupplements : this.state.supplements,
 		orderPrice		 : this.state.totalPrice,
-		clientInfo       : {
-							name   : 'hanafi',
-							adress : 'cite bon accueil n05',
-							tel    : '+213552587476',
-						    },
-		deliveryType    : 'VIP',	
+		clientInfo       : clientInfo,	
 
 	}
 	axios.post('/order.json',order)
 		 .then(response=>{
 		 	
 		 	this.setState({loading:false});
-		 	console.log(response)
+		 	
 		 	this.props.history.push('/build')
 			})
 		 .catch(error  =>this.setState({loading:false}))
@@ -112,7 +134,17 @@ confirmHandler =()=>{
 
 
 
+onchangeHandler=(event,type)=>{
+	const info={...this.state.orderInfo}
+	let isValide=true;
+	const value = event.target.value;
+	isValide= !(value.length<info[type].minLength && value.length>0)
+	info[type].valide=isValide;
+	info[type].value=value;
+	this.setState({clientInfo:info})
+	
 
+}
 
 
 render(){
@@ -148,8 +180,16 @@ render(){
 
 		
 		<p className={styles.PriceP}>Your finall Cost is : {this.state.totalPrice} </p>
-		<input type="text" name="phone" placeholder ="Phone Number   " />
-		<input type="text" name="adress" placeholder="Delevery Adress" />
+		<input className={this.state.orderInfo['phone'].valide ? "valide":styles.unvalide}
+			   type="text" 
+		       name="phone" 
+		       placeholder ="Phone Number   "
+		       onChange={(event)=>this.onchangeHandler(event,"phone")} />
+		<input className={this.state.orderInfo['adress'].valide ? "valide":styles.unvalide}
+			   type="text"
+			   name="adress" 
+			   placeholder ="Delevery Adress" 
+			   onChange={(event)=>this.onchangeHandler(event,"adress")}/>
 		<h5>Let it blank to use default number or adress </h5>
 		<div className={styles.buttons}>
 			<button className={styles.Confirm} onClick={this.confirmHandler}> &#10003; </button>

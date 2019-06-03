@@ -28,7 +28,7 @@ const pizza = props => {
 	}).reduce((arr,el)=>{
 		return arr.concat(el);
 	},[]);
-	console.log(ing)
+	
 
 return (
 <Aux>

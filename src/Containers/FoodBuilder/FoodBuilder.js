@@ -87,7 +87,7 @@ confirmOrder =()=>{
 		search:query
 
 		})
-	console.log(this.props.history)
+	
 	
 }
 cancelOrder = ()=>{
