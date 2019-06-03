@@ -48,6 +48,7 @@ state = {
 
 	},
 
+
 	
 	}
 
@@ -105,10 +106,10 @@ confirmHandler =()=>{
 	this.setState({loading:true});
 	let phoneNumber=this.state.orderInfo.phone.value;
 	let adress=this.state.orderInfo.adress.value;
-	if(phoneNumber==''){
+	if(phoneNumber===''){
 		phoneNumber='default phone Number'
 	}
-	if(adress==''){
+	if(adress===''){
 		adress='default adress'
 	}
 	const clientInfo ={
@@ -161,8 +162,8 @@ render(){
 	for (let key in addDisable ){
 		addDisable[key]= (addDisable[key]>=10 )
 	}
-
-
+	let disabled=false;
+	disabled=!(this.state.orderInfo['phone'].valide && this.state.orderInfo['adress'].valide)
 	return(
 		
 
@@ -192,7 +193,8 @@ render(){
 			   onChange={(event)=>this.onchangeHandler(event,"adress")}/>
 		<h5>Let it blank to use default number or adress </h5>
 		<div className={styles.buttons}>
-			<button className={styles.Confirm} onClick={this.confirmHandler}> &#10003; </button>
+		{console.log(disabled)}
+			<button className={styles.Confirm} onClick={this.confirmHandler} disabled={disabled}> &#10003; </button>
 			<button className={styles.Cancel}  onClick={this.cancelHandler} >    X 	   </button>
 		</div>
 		

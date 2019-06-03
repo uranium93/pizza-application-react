@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './Order.module.css'
 
+
 const order =(props)=>{
 
 	const pizzaIngredients= Object.entries(props.order.orderIngridietns)

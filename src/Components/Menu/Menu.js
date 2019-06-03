@@ -1,6 +1,8 @@
 import React     from 'react'
+import {NavLink} from 'react-router-dom'
 import styles    from './Menu.module.css'
-//import Backdrop  from '../Ui/Backdrop/Backdrop'
+
+
 
 const menu = (props)=>{
 
@@ -10,13 +12,13 @@ const menu = (props)=>{
 			
 		<div className={styles.menuItems}>
 		<p onClick={props.closeMenu}>X</p>
-			<ul>
-				<li><a href="/" className={styles.active}>Link 1 </a></li>
-				<li><a href="/">Link 2 </a></li>
+			<ul onClick={props.closeMenu} >
+				<li><NavLink to="/build" >Order Pizza </NavLink></li>
+				<li><NavLink to="/orders">Orders List </NavLink></li>
 			</ul>
 		</div>
 		
-		: <p onClick={props.openMenu}> Menu </p> }
+		: <p onClick={props.openMenu} className={styles.menuTag}> Menu </p> }
 		</div>
 )
 }

@@ -3,6 +3,12 @@
 		display: none;
 	}
 }
+.menuTag{
+	padding:0 10px;
+	font-family: inherit;
+	font-size: 20px;
+	font-weight: 500;
+}
 .menu p{
 	line-height: 80px;
 	margin: 0;
@@ -13,7 +19,7 @@
 	border: 1px solid black;
 	border-radius: 5px;
 	line-height: 30px;
-	right: 5px;
+	right: 15px;
 	color: black;
 	font-size: 28px;
 	text-align: center;
