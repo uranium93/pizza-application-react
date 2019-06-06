@@ -1,4 +1,6 @@
 import React , {Component} from 'react'
+import {connect}		   from 'react-redux'
+
 import styles              from './FoodBuilder.module.css'
 import Pizza               from '../../Components/Pizza/Pizza'
 import PizzaControls       from '../../Components/PizzaControls/PizzaControls'
@@ -8,6 +10,7 @@ import Backdrop            from '../../Components/Ui/Backdrop/Backdrop'
 import Aux                 from '../../hoc/Auxiliary'
 import axios               from '../../axios-pizza'
 import errors              from '../../hoc/Errors'
+import * as actionType     from '../../store/action'
 
 /////////////////// prices of all ingredients 
 
@@ -22,13 +25,7 @@ const ING_PRICES = {
 ///////the class foodbuilder taht will manipulate the state of our pizza //////
 class FoodBuilder extends Component {
 	state = {
-	 ingredients : {
-					vagies : 0,
-					corns : 0,
-					meat : 0,
-					mushrooms : 0,
-					},
-	 totalPrice  : 1.5,
+	
 	 showMenu    : false,
 	 backdrop    : false,
 	 loading     : false
@@ -173,4 +170,18 @@ render (){
 
 
 }
-export default errors(FoodBuilder,axios);
+
+const mapStateToProps= state =>{
+	return {
+		ing	 :state.ingredients,
+		price:state.totalPrice
+	}
+}
+
+const mapDispatchToProps = dispatch =>{
+	return{
+		addenIngredient:(ingName)=>dispatch({type:actionType.ADD_INGREDIENT,ingName:ingName}),
+		removeIngredient:(ingName)=>dispatch({type:actionType.REMOVE_INGREDIENT,ingName:ingName})
+	}
+}
+export default connect(mapStateToProps,mapDispatchToProps)(errors(FoodBuilder,axios));
