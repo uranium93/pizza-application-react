@@ -1,4 +1,5 @@
 import React , {Component} from 'react'
+import {connect}           from 'react-redux'
 import styles from './FoodOrder.module.css'
 import Supplements from '../../Components/Supplements/Supplements'
 import axios from '../../axios-pizza'
@@ -71,7 +72,7 @@ addIng = (adding)=>{
 	const prevCount = this.state.supplements[adding];
 	const newUpdateIng = {...this.state.supplements};
 	newUpdateIng[adding]=prevCount+1;
-	const prevPrice = this.state.totalPrice;
+	const prevPrice = this.props.price;
 	
 	let newUpdatePrice = parseFloat(prevPrice) + parseFloat(SUPP_PRICES[adding]);
 	newUpdatePrice = parseFloat(newUpdatePrice).toFixed(2);
@@ -85,7 +86,7 @@ removeIng = (removeing)=>{
 	const prevCount = this.state.supplements[removeing];
 	const newUpdateIng = {...this.state.supplements};
 	newUpdateIng[removeing]=prevCount-1;
-	const prevPrice = this.state.totalPrice;
+	const prevPrice = this.props.price;
 	
 	let newUpdatePrice = parseFloat(prevPrice) - parseFloat(SUPP_PRICES[removeing]);
 	newUpdatePrice = parseFloat(newUpdatePrice).toFixed(2);
@@ -117,9 +118,9 @@ confirmHandler =()=>{
 		adress:adress,
 	}
 	const order={
-		orderIngridietns : this.state.ingredients,
+		orderIngridietns : this.props.ing,
 		orderSupplements : this.state.supplements,
-		orderPrice		 : this.state.totalPrice,
+		orderPrice		 : this.props.price,
 		clientInfo       : clientInfo,	
 
 	}
@@ -180,7 +181,7 @@ render(){
 							   />
 
 		
-		<p className={styles.PriceP}>Your finall Cost is : {this.state.totalPrice} </p>
+		<p className={styles.PriceP}>Your finall Cost is : {this.props.price} </p>
 		<input className={this.state.orderInfo['phone'].valide ? "valide":styles.unvalide}
 			   type="text" 
 		       name="phone" 
@@ -210,4 +211,10 @@ render(){
 
 }
 
-export default FoodOrder;
+const mapStateToProps=state=>{
+	return{
+		ing	  : state.ingredients,
+		price : state.price
+	}
+}
+export default connect(mapStateToProps)(FoodOrder);
