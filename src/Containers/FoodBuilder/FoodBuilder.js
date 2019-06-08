@@ -10,7 +10,7 @@ import Backdrop            from '../../Components/Ui/Backdrop/Backdrop'
 import Aux                 from '../../hoc/Auxiliary'
 import axios               from '../../axios-pizza'
 import errors              from '../../hoc/Errors'
-import * as actionType     from '../../store/action'
+import * as foodBuilderActions     from '../../store/actions/index'
 
 /////////////////// prices of all ingredients 
 
@@ -152,8 +152,8 @@ const mapStateToProps= state =>{
 
 const mapDispatchToProps = dispatch =>{
 	return{
-		addIngredient:(ingName)=>dispatch({type:actionType.ADD_INGREDIENT,ingName:ingName}),
-		removeIngredient:(ingName)=>dispatch({type:actionType.REMOVE_INGREDIENT,ingName:ingName})
+		addIngredient:(ingName)=>dispatch(foodBuilderActions.addIngredient(ingName)),
+		removeIngredient:(ingName)=>dispatch(foodBuilderActions.removeIngredient(ingName))
 	}
 }
 export default connect(mapStateToProps,mapDispatchToProps)(errors(FoodBuilder,axios));

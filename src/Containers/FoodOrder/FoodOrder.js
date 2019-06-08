@@ -25,13 +25,13 @@ const SUPP_PRICES={
 class FoodOrder extends Component {
 
 state = {
-	ingredients:null,
+	
 	 supplements : {
 					jus : 0,
 					desert : 0,
 					chocolate : 0,
 						},
-	totalPrice : null,
+	totalPrice : this.props.price,
 	loading:false,
 	orderInfo:{
 		phone:{
@@ -53,18 +53,7 @@ state = {
 	
 	}
 
-componentDidMount(){
-	let total =1.5;
-	let ingredient={};
-	const ing = new URLSearchParams(this.props.location.search) 
-	for (let param of ing.entries()){
-		total+= param[1]*ING_PRICES[param[0]];
-		ingredient[param[0]]=param[1];
-	}
-	total=parseFloat(total).toFixed(2)
-	this.setState({totalPrice:total , ingredients:ingredient})
 
-}	
 	/////////////////////////////////////////////////////
 ///////////////adding supplements to the state //////////////////	
 
@@ -72,7 +61,7 @@ addIng = (adding)=>{
 	const prevCount = this.state.supplements[adding];
 	const newUpdateIng = {...this.state.supplements};
 	newUpdateIng[adding]=prevCount+1;
-	const prevPrice = this.props.price;
+	const prevPrice = this.state.totalPrice;
 	
 	let newUpdatePrice = parseFloat(prevPrice) + parseFloat(SUPP_PRICES[adding]);
 	newUpdatePrice = parseFloat(newUpdatePrice).toFixed(2);
@@ -86,7 +75,7 @@ removeIng = (removeing)=>{
 	const prevCount = this.state.supplements[removeing];
 	const newUpdateIng = {...this.state.supplements};
 	newUpdateIng[removeing]=prevCount-1;
-	const prevPrice = this.props.price;
+	const prevPrice = this.state.totalPrice;
 	
 	let newUpdatePrice = parseFloat(prevPrice) - parseFloat(SUPP_PRICES[removeing]);
 	newUpdatePrice = parseFloat(newUpdatePrice).toFixed(2);
@@ -120,7 +109,7 @@ confirmHandler =()=>{
 	const order={
 		orderIngridietns : this.props.ing,
 		orderSupplements : this.state.supplements,
-		orderPrice		 : this.props.price,
+		orderPrice		 : this.state.totalPrice,
 		clientInfo       : clientInfo,	
 
 	}
@@ -181,7 +170,7 @@ render(){
 							   />
 
 		
-		<p className={styles.PriceP}>Your finall Cost is : {this.props.price} </p>
+		<p className={styles.PriceP}>Your finall Cost is : {this.state.totalPrice} </p>
 		<input className={this.state.orderInfo['phone'].valide ? "valide":styles.unvalide}
 			   type="text" 
 		       name="phone" 
@@ -214,7 +203,7 @@ render(){
 const mapStateToProps=state=>{
 	return{
 		ing	  : state.ingredients,
-		price : state.price
+		price : state.totalPrice
 	}
 }
 export default connect(mapStateToProps)(FoodOrder);
