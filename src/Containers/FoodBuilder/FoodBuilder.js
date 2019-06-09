@@ -8,8 +8,7 @@ import Modal               from '../../Components/Ui/Modal/Modal'
 import Loading             from '../../Components/Ui/Loading/Loading'
 import Backdrop            from '../../Components/Ui/Backdrop/Backdrop'
 import Aux                 from '../../hoc/Auxiliary'
-import axios               from '../../axios-pizza'
-import errors              from '../../hoc/Errors'
+
 import * as foodBuilderActions     from '../../store/actions/index'
 
 /////////////////// prices of all ingredients 
@@ -156,4 +155,4 @@ const mapDispatchToProps = dispatch =>{
 		removeIngredient:(ingName)=>dispatch(foodBuilderActions.removeIngredient(ingName))
 	}
 }
-export default connect(mapStateToProps,mapDispatchToProps)(errors(FoodBuilder,axios));
+export default connect(mapStateToProps,mapDispatchToProps)(FoodBuilder);

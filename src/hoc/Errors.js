@@ -10,9 +10,10 @@ const errors = (Content,axios)=>{
 		}
 
 
-	/*	componentWillMount(){
+		componentWillMount(){
 			this.responseError = axios.interceptors.response.use(res=>res,error=>{
 				this.setState({anError:error})
+				
 			})
 			this.requestError = axios.interceptors.request.use(req=>{
 				this.setState({anError:null});
@@ -20,8 +21,8 @@ const errors = (Content,axios)=>{
 			})
 		};
 
-		componentWillUnmount(){
-			axios.intrtceptors.response.eject(this.responseError);
+		/*componentWillUnmount(){
+			axios.interceptors.response.eject(this.responseError);
 			axios.interceptors.request.eject(this.requestError);
 
 		}*/
@@ -39,6 +40,7 @@ const errors = (Content,axios)=>{
 				
 				cont = 
 				<Aux>
+				
 				<Backdrop hide={this.hide}/>
 				<Modal >
 					{this.state.anError.message}
@@ -47,6 +49,7 @@ const errors = (Content,axios)=>{
 			}
 			return (
 				<Aux>
+				
 				{cont}
 				</Aux>
 			)
