@@ -22,11 +22,11 @@ const errors = (Content,axios)=>{
 			})
 		};
 
-		/*componentWillUnmount(){
+		componentWillUnmount(){
 			axios.interceptors.response.eject(this.responseError);
 			axios.interceptors.request.eject(this.requestError);
 
-		}*/
+		}
 
 
 		hide =()=>{
