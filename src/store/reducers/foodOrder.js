@@ -1,50 +1,25 @@
 import * as actionType from '../actions/actionTypes'
-import axios from '../../axios-pizza'
 
 const initialState = {
     loading: false,
 }
-
-const startSending = () => {
-    return {
-        loading: true
-    }
-}
-
-const sendingSucces = () => {
-    return {
-        loading: false
-    }
-}
-
-const sendingFail = () => {
-    return {
-        loading: false
-    }
-}
-
-
- const foodOrderReducer = (state = initialState, action) => {
+ 
+const foodOrderReducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case actionType.SENDING_ORDER:
-            return dispatch => {
-                startSending()
-                axios.post('/order.json', action.order)
-                    .then(response => {
-
-                        sendingSucces()
-
-                        if (response) {
-                            action.history.push('/build')
-                        }
-
-                    })
-                    .catch(error => {
-                        sendingFail()
-                    })
-
+        case actionType.START_SENDING_ORDER:
+            return{
+                loading:true
             }
+        case actionType.SUCCES_SENDING_ORDER:
+            return{
+                loading:false
+            }
+        case actionType.FAIL_SENDING_ORDER:
+            return{
+                loading:false
+            }
+            
 
         default:
             return state

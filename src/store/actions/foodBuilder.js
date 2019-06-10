@@ -17,7 +17,7 @@ export const removeIngredient = (name) => {
 
 }
 
-export const initIngredientsSucces = (init) => {
+const initIngredientsSucces = (init) => {
     return {
         type: actionTypes.INIT_INGREDIENT_SUCCES,
         init: init
