@@ -15,7 +15,7 @@ const initialState = {
         meat: 0,
         mushrooms: 0,
     },
-    totalPrice: +1.5,
+    totalPrice: +2.5,
 }
 let totalPrice = +0;
 
@@ -44,11 +44,21 @@ const removeIngredient = (state, action) => {
         totalPrice: totalPrice.toFixed(2)
     };
 }
+
+const initIngridientSucces =(state,action)=>{
+    return{
+        ...state,
+        ingredients:action.init.ingredients,
+        totalPrice:action.init.totalPrice,
+
+    }
+}
 const reducer = (state = initialState, action) => {
 
     switch (action.type) {
         case actionType.ADD_INGREDIENT: return addIngredient(state, action);
         case actionType.REMOVE_INGREDIENT: return removeIngredient(state, action)
+        case actionType.INIT_INGREDIENT_SUCCES:return initIngridientSucces(state,action);
         default: return state;
     }
 

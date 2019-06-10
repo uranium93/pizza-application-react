@@ -5,6 +5,7 @@ import Supplements from '../../Components/Supplements/Supplements'
 import axios from '../../axios-pizza'
 import errors from '../../hoc/Errors'
 import Loading from '../../Components/Ui/Loading/Loading'
+import * as foodOrderActios from '../../store/actions/index'
 
 /////////////////// prices of all ingredients 
 
@@ -33,7 +34,6 @@ class FoodOrder extends Component {
 			chocolate: 0,
 		},
 		totalPrice: this.props.price,
-		loading: false,
 		orderInfo: {
 			phone: {
 				minLength: 13,
@@ -114,17 +114,9 @@ class FoodOrder extends Component {
 			clientInfo: clientInfo,
 
 		}
-		axios.post('/order.json', order)
-			.then(response => {
 
-				this.setState({ loading: false });
-				console.log(response)
-				if (response) {
-					this.props.history.push('/build')
-				}
-
-			})
-			.catch(error => { this.setState({ loading: false }); console.log("fail") })
+		this.props.onSendingOrder(order,this.props.history);
+		
 	}
 
 
@@ -162,7 +154,7 @@ class FoodOrder extends Component {
 
 
 			<div className={styles.FoodOrder}>
-				{this.state.loading ? <Loading /> :
+				{this.props.loading ? <Loading /> :
 					<div>
 						<h1> you can add more suppliments</h1>
 						<Supplements
@@ -206,8 +198,16 @@ class FoodOrder extends Component {
 
 const mapStateToProps = state => {
 	return {
-		ing: state.ingredients,
-		price: state.totalPrice
+		ing: state.foodBuilderReducer.ingredients,
+		price: state.foodBuilderReducer.totalPrice,
+		loading: state.foodOrderReducer.loading
 	}
 }
-export default connect(mapStateToProps)(errors(FoodOrder, axios));
+
+const mapDispatchToProps = dispatch =>{
+	return{
+		onSendingOrder :(order,history)=> dispatch(foodOrderActios.sendingOrder(order,history))
+	}
+
+}
+export default connect(mapStateToProps,mapDispatchToProps)(errors(FoodOrder, axios));

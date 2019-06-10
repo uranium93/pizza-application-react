@@ -13,6 +13,7 @@ const errors = (Content,axios)=>{
 		componentWillMount(){
 			this.responseError = axios.interceptors.response.use(res=>res,error=>{
 				this.setState({anError:error})
+				console.log("error")
 				
 			})
 			this.requestError = axios.interceptors.request.use(req=>{

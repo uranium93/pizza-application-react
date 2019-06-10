@@ -8,6 +8,9 @@ import Modal               from '../../Components/Ui/Modal/Modal'
 import Loading             from '../../Components/Ui/Loading/Loading'
 import Backdrop            from '../../Components/Ui/Backdrop/Backdrop'
 import Aux                 from '../../hoc/Auxiliary'
+import errors              from '../../hoc/Errors'
+import axios 			   from '../../axios-pizza'
+
 
 import * as foodBuilderActions     from '../../store/actions/index'
 
@@ -28,6 +31,12 @@ class FoodBuilder extends Component {
 	 backdrop    : false,
 	 loading     : false
 	}
+
+
+componentWillMount(){
+	this.props.initIngredient();
+	
+}
 	
 	/////////////////////////////////////////////////////
 ///////////////   minpulate the order area  //////////////////	
@@ -144,15 +153,16 @@ render (){
 
 const mapStateToProps= state =>{
 	return {
-		ing	 :state.ingredients,
-		price:state.totalPrice
+		ing	 :state.foodBuilderReducer.ingredients,
+		price:state.foodBuilderReducer.totalPrice
 	}
 }
 
 const mapDispatchToProps = dispatch =>{
 	return{
 		addIngredient:(ingName)=>dispatch(foodBuilderActions.addIngredient(ingName)),
-		removeIngredient:(ingName)=>dispatch(foodBuilderActions.removeIngredient(ingName))
+		removeIngredient:(ingName)=>dispatch(foodBuilderActions.removeIngredient(ingName)),
+		initIngredient:()=>dispatch(foodBuilderActions.initIngredients())
 	}
 }
-export default connect(mapStateToProps,mapDispatchToProps)(FoodBuilder);
+export default connect(mapStateToProps,mapDispatchToProps)(errors(FoodBuilder,axios));
